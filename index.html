@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIP Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        
+        .wrapper,
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        h1,
+        h2 {
+            color: #4CAF50;
+        }
+        
+        p {
+            line-height: 1.6;
+        }
+        
+        ul {
+            margin-left: 20px;
+        }
+        
+        ul li {
+            margin-bottom: 10px;
+        }
+        
+        .field {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        h4 {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SIP Calculator Section -->
+    <div class="wrapper">
+        <h1>SIP Calculator</h1>
+        <div class="field">
+            <label for="amount"><h3>Amount Invested ₹</h3></label>
+            <div>
+                <input type="text" id="amount" placeholder="5000 ₹" class="amount">
+            </div>
+        </div>
+        <div class="field">
+            <label for="rate"><h3>Rate of Interest %</h3></label>
+            <div>
+                <input type="text" id="rate" placeholder="15 %" class="rate">
+            </div>
+        </div>
+        <div class="field">
+            <label for="years"><h3>Duration yrs</h3></label>
+            <div>
+                <input type="text" id="years" placeholder="20 yrs" class="year">
+            </div>
+        </div>
+        <button onclick="CalculateSIP()">Calculate</button>
+        <h4>Total Amount:
+            <span id="amountI">0 ₹</span>
+        </h4>
+        <h4>Future Amount:
+            <span id="Futurevalue">0 ₹</span>
+        </h4>
+        <script>
+            function CalculateSIP() {
+                var amountInvested = document.querySelector(".amount").value;
+                var rateofReturn = document.querySelector(".rate").value;
+                var time = document.querySelector(".year").value;
+
+                var monthlyRate = rateofReturn / 12 / 100; // Monthly interest rate
+                var months = time * 12; // Convert years to months
+
+                // Calculate future value of SIP using the formula
+                var futureValue = amountInvested * (Math.pow(1 + monthlyRate, months) - 1) / monthlyRate;
+
+                // Calculate total invested amount
+                var amountTotalInvested = amountInvested * months;
+
+                // Update the HTML content
+                document.getElementById("amountI").innerHTML = amountTotalInvested.toFixed(2) + " ₹";
+                document.getElementById("Futurevalue").innerHTML = futureValue > 0 ? futureValue.toFixed(2) + " ₹" : "0 ₹";
+            }
+        </script>
+    </div>
+
+    <!-- SIP Information Section -->
+    <div class="container">
+        <h1>Systematic Investment Plan (SIP) Calculator - Information</h1>
+        <p>
+            A Systematic Investment Plan (SIP) is a method of investing a fixed sum in a mutual fund scheme on a regular basis. It allows investors to invest small amounts at regular intervals instead of making a lump-sum investment. SIPs help in achieving financial
+            goals by investing consistently over time and benefiting from the power of compounding.
+        </p>
+
+        <h2>How SIP Works?</h2>
+        <p>
+            SIP works by allowing you to invest a fixed amount at regular intervals (monthly, quarterly, etc.) into a mutual fund scheme. The amount gets automatically deducted from your bank account and invested in a fund. Depending on the NAV (Net Asset Value)
+            of the fund at that time, you purchase units. Over time, this builds up your investment portfolio.
+        </p>
+
+        <h2>Benefits of SIP</h2>
+        <ul>
+            <li><strong>Discipline in Investing:</strong> SIP encourages regular investing, which helps in building wealth over time.</li>
+            <li><strong>Rupee Cost Averaging:</strong> When you invest consistently, you buy more units when the prices are low and fewer when the prices are high, thus averaging the cost of investment.</li>
+            <li><strong>Power of Compounding:</strong> Even small investments grow over time due to compound interest, making SIP an effective way to achieve long-term financial goals.</li>
+            <li><strong>Flexibility:</strong> You can start SIPs with as low as ₹500 and increase the investment amount as per your convenience.</li>
+            <li><strong>Goal-Oriented Savings:</strong> SIPs help in saving and investing systematically towards your financial goals like buying a house, children's education, or retirement.</li>
+        </ul>
+
+        <h2>Why Use a SIP Calculator?</h2>
+        <p>
+            A SIP calculator helps in estimating the future value of your investments based on the monthly investment amount, tenure, and expected rate of return. It is a useful tool to plan your investments and achieve your financial goals more efficiently. By entering
+            the SIP details, you can get an idea of how much wealth you can accumulate over time.
+        </p>
+
+        <h2>SIP Formula</h2>
+        <p>
+            The formula to calculate the future value of a SIP investment is as follows:
+        </p>
+        <p>
+            <strong>Future Value (FV) = P × [(1 + r)^n - 1] / r</strong>
+        </p>
+        <p>
+            Where:
+        </p>
+        <ul>
+            <li><strong>FV:</strong> Future Value of the investment</li>
+            <li><strong>P:</strong> Amount invested in each period</li>
+            <li><strong>r:</strong> Rate of interest per period (monthly rate of return)</li>
+            <li><strong>n:</strong> Total number of periods (months)</li>
+        </ul>
+
+        <h2>Key Factors to Consider:</h2>
+        <ul>
+            <li><strong>Investment Amount:</strong> The amount you invest every month.</li>
+            <li><strong>Tenure:</strong> The time period for which you will invest regularly.</li>
+            <li><strong>Expected Rate of Return:</strong> The estimated annual return you expect from the mutual fund.</li>
+        </ul>
+    </div>
+
+</body>
+
+</html>
